@@ -1,22 +1,54 @@
 /**
- * OOPSBannerApp - Displays OOPS banner using String array and loop
+ * OOPSBannerApp - Displays OOPS banner using static helper methods
  * @author Kartikeya-Chinmaya
- * @version 5.0
+ * @version 6.0
  */
 public class OOPSBannerApp {
-    public static void main(String[] args) {
-        String[] banner = {
-            String.join("  ", " *** ", " *** ", "**** ", " *** "),
-            String.join("  ", "*   *", "*   *", "*   *", "*    "),
-            String.join("  ", "*   *", "*   *", "*   *", "*    "),
-            String.join("  ", "*   *", "*   *", "**** ", " *** "),
-            String.join("  ", "*   *", "*   *", "*    ", "    *"),
-            String.join("  ", "*   *", "*   *", "*    ", "    *"),
-            String.join("  ", " *** ", " *** ", "*    ", " *** ")
-        };
 
-        for (String line : banner) {
-            System.out.println(line);
+    static String[] getO() {
+        return new String[] {
+            String.join("", " *** "),
+            String.join("", "*   *"),
+            String.join("", "*   *"),
+            String.join("", "*   *"),
+            String.join("", "*   *"),
+            String.join("", "*   *"),
+            String.join("", " *** ")
+        };
+    }
+
+    static String[] getP() {
+        return new String[] {
+            String.join("", "**** "),
+            String.join("", "*   *"),
+            String.join("", "*   *"),
+            String.join("", "**** "),
+            String.join("", "*    "),
+            String.join("", "*    "),
+            String.join("", "*    ")
+        };
+    }
+
+    static String[] getS() {
+        return new String[] {
+            String.join("", " *** "),
+            String.join("", "*    "),
+            String.join("", "*    "),
+            String.join("", " *** "),
+            String.join("", "    *"),
+            String.join("", "    *"),
+            String.join("", " *** ")
+        };
+    }
+
+    public static void main(String[] args) {
+        String[] O1 = getO();
+        String[] O2 = getO();
+        String[] P  = getP();
+        String[] S  = getS();
+
+        for (int i = 0; i < 7; i++) {
+            System.out.println(O1[i] + "  " + O2[i] + "  " + P[i] + "  " + S[i]);
         }
     }
 }
