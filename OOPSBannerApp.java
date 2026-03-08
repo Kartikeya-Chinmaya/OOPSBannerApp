@@ -1,49 +1,43 @@
 /**
- * OOPSBannerApp - Displays OOPS banner using CharacterPatternMap class
+ * OOPSBannerApp - Displays OOPS banner using HashMap
  * @author Kartikeya-Chinmaya
- * @version 7.0
+ * @version 8.0
  */
+import java.util.HashMap;
+import java.util.Map;
+
 public class OOPSBannerApp {
 
-    static class CharacterPatternMap {
-        private char character;
-        private String[] pattern;
+    static Map<Character, String[]> buildPatternMap() {
+        Map<Character, String[]> map = new HashMap<>();
 
-        public CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
+        map.put('O', new String[]{
+            " *** ", "*   *", "*   *", "*   *", "*   *", "*   *", " *** "
+        });
 
-        public char getCharacter() {
-            return character;
-        }
+        map.put('P', new String[]{
+            "**** ", "*   *", "*   *", "**** ", "*    ", "*    ", "*    "
+        });
 
-        public String[] getPattern() {
-            return pattern;
+        map.put('S', new String[]{
+            " *** ", "*    ", "*    ", " *** ", "    *", "    *", " *** "
+        });
+
+        return map;
+    }
+
+    static void renderBanner(String word, Map<Character, String[]> patternMap) {
+        for (int i = 0; i < 7; i++) {
+            StringBuilder line = new StringBuilder();
+            for (char c : word.toCharArray()) {
+                line.append(patternMap.get(c)[i]).append("  ");
+            }
+            System.out.println(line.toString().stripTrailing());
         }
     }
 
     public static void main(String[] args) {
-        CharacterPatternMap O = new CharacterPatternMap('O', new String[]{
-            " *** ", "*   *", "*   *", "*   *", "*   *", "*   *", " *** "
-        });
-
-        CharacterPatternMap P = new CharacterPatternMap('P', new String[]{
-            "**** ", "*   *", "*   *", "**** ", "*    ", "*    ", "*    "
-        });
-
-        CharacterPatternMap S = new CharacterPatternMap('S', new String[]{
-            " *** ", "*    ", "*    ", " *** ", "    *", "    *", " *** "
-        });
-
-        CharacterPatternMap[] word = {O, O, P, S};
-
-        for (int i = 0; i < 7; i++) {
-            StringBuilder line = new StringBuilder();
-            for (CharacterPatternMap c : word) {
-                line.append(c.getPattern()[i]).append("  ");
-            }
-            System.out.println(line.toString().stripTrailing());
-        }
+        Map<Character, String[]> patternMap = buildPatternMap();
+        renderBanner("OOPS", patternMap);
     }
 }
