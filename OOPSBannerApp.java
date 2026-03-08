@@ -1,7 +1,7 @@
 /**
  * OOPSBannerApp - Displays OOPS banner using String array and loop
  * @author Kartikeya-Chinmaya
- * @version 4.0
+ * @version 5.0
  */
 public class OOPSBannerApp {
     public static void main(String[] args) {
