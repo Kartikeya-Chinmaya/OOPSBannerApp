@@ -1,54 +1,49 @@
 /**
- * OOPSBannerApp - Displays OOPS banner using static helper methods
+ * OOPSBannerApp - Displays OOPS banner using CharacterPatternMap class
  * @author Kartikeya-Chinmaya
- * @version 6.0
+ * @version 7.0
  */
 public class OOPSBannerApp {
 
-    static String[] getO() {
-        return new String[] {
-            String.join("", " *** "),
-            String.join("", "*   *"),
-            String.join("", "*   *"),
-            String.join("", "*   *"),
-            String.join("", "*   *"),
-            String.join("", "*   *"),
-            String.join("", " *** ")
-        };
-    }
+    static class CharacterPatternMap {
+        private char character;
+        private String[] pattern;
 
-    static String[] getP() {
-        return new String[] {
-            String.join("", "**** "),
-            String.join("", "*   *"),
-            String.join("", "*   *"),
-            String.join("", "**** "),
-            String.join("", "*    "),
-            String.join("", "*    "),
-            String.join("", "*    ")
-        };
-    }
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
 
-    static String[] getS() {
-        return new String[] {
-            String.join("", " *** "),
-            String.join("", "*    "),
-            String.join("", "*    "),
-            String.join("", " *** "),
-            String.join("", "    *"),
-            String.join("", "    *"),
-            String.join("", " *** ")
-        };
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
+        }
     }
 
     public static void main(String[] args) {
-        String[] O1 = getO();
-        String[] O2 = getO();
-        String[] P  = getP();
-        String[] S  = getS();
+        CharacterPatternMap O = new CharacterPatternMap('O', new String[]{
+            " *** ", "*   *", "*   *", "*   *", "*   *", "*   *", " *** "
+        });
+
+        CharacterPatternMap P = new CharacterPatternMap('P', new String[]{
+            "**** ", "*   *", "*   *", "**** ", "*    ", "*    ", "*    "
+        });
+
+        CharacterPatternMap S = new CharacterPatternMap('S', new String[]{
+            " *** ", "*    ", "*    ", " *** ", "    *", "    *", " *** "
+        });
+
+        CharacterPatternMap[] word = {O, O, P, S};
 
         for (int i = 0; i < 7; i++) {
-            System.out.println(O1[i] + "  " + O2[i] + "  " + P[i] + "  " + S[i]);
+            StringBuilder line = new StringBuilder();
+            for (CharacterPatternMap c : word) {
+                line.append(c.getPattern()[i]).append("  ");
+            }
+            System.out.println(line.toString().stripTrailing());
         }
     }
 }
